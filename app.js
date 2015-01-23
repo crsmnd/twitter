@@ -1,7 +1,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var swig = require('swig');
-var tweetBank = require('./tweetBank');
+var routes = require('./routes/');
 
 // Initiate instance of Express
 var app = express();
@@ -25,14 +25,17 @@ app.listen(port, function() {
 	console.log("server listening");
 });
 
+// Reroute everything
+app.use('/', routes);
+app.use(express.static('public'));
 
 
-// Handlers
-app.get("/", function(req, res) {
-	var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
-	res.render( 'index', {title: 'Hall of Fame', people: people} );
-});
+// // Handlers
+// app.get("/", function(req, res) {
+// 	var people = [{name: 'Full'}, {name: 'Stacker'}, {name: 'Son'}];
+// 	res.render( 'index', {title: 'Hall of Fame', people: people} );
+// });
 
-app.get("/tweets", function(req, res) {
-	res.send("Now you are in the Tweet directory!");
-});
+// app.get("/tweets", function(req, res) {
+// 	res.send("Now you are in the Tweet directory!");
+// });
