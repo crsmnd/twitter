@@ -3,7 +3,7 @@ var _ = require('underscore');
 var data = [];
 
 function add (name, text) {
-	data.push({name: name, text: text});
+	data.unshift({name: name, text: text});
 }
 
 function list () {
@@ -34,3 +34,6 @@ var getFakeTweet = function() {
 for(var i=0; i<10; i++) {
   module.exports.add( getFakeName(), getFakeTweet() );
 }
+
+module.exports.add('Vincent Daranyi', 'Hooraay #fun');
+module.exports.add('Colin VanLang', 'I love Fullstack! #work');

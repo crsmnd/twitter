@@ -2,6 +2,7 @@ var express = require('express');
 var morgan = require('morgan');
 var swig = require('swig');
 var routes = require('./routes/');
+var bodyParser = require('body-parser');
 
 // Initiate instance of Express
 var app = express();
@@ -26,8 +27,9 @@ app.listen(port, function() {
 });
 
 // Reroute everything
-app.use('/', routes);
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
+app.use('/', routes);
 
 
 // // Handlers
