@@ -12,7 +12,9 @@ app.get("/", function(req, res) {
 	res.send("Hello World!");
 });
 
-
+app.get("/tweets", function(req, res) {
+	res.send("Now you are in the Tweet directory!");
+});
 
 
 // Activate server to listen at port 1234
