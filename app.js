@@ -3,6 +3,7 @@ var morgan = require('morgan');
 var swig = require('swig');
 var routes = require('./routes/');
 var bodyParser = require('body-parser');
+var socket = require('socket.io');
 
 // Initiate instance of Express
 var app = express();
@@ -22,9 +23,11 @@ swig.setDefaults({ cache: false });
 
 // Activate server to listen at port 1234
 var port = 3000;
-app.listen(port, function() {
+var server = app.listen(port, function() {
 	console.log("server listening");
 });
+io = socket.listen(server);
+
 
 // Reroute everything
 app.use(bodyParser.urlencoded({ extended: false }));
