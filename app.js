@@ -26,13 +26,14 @@ var port = 3000;
 var server = app.listen(port, function() {
 	console.log("server listening");
 });
-io = socket.listen(server);
+var io = socket.listen(server);
 
 
 // Reroute everything
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static('public'));
-app.use('/', routes);
+routes(app, io);
+// app.use('/', routes);
 
 
 // // Handlers
