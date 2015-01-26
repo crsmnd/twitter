@@ -30,7 +30,7 @@ module.exports = function(app, io) {
   	var name = req.body.name;
   	var text = req.body.text;
   	tweetBank.add(name, text);
-  	io.sockets.emit('new_tweet', { /* tweet info */ });
+  	io.sockets.emit('new_tweet', { name: name, text: text });
   	res.redirect('/');
   })
 

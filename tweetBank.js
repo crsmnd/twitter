@@ -2,8 +2,9 @@ var _ = require('underscore');
 
 var data = [];
 
-function add (name, text) {
-	data.unshift({name: name, text: text});
+function add (name, text, id) {
+  if (id == undefined) id = data.length;
+	data.unshift({name: name, text: text, id: id});
 }
 
 function list () {
@@ -14,7 +15,11 @@ function find (properties) {
 	return _.where(data, properties);
 }
 
-module.exports = {add: add, list: list, find:find};
+function num_tweets () {
+  return data.length;
+}
+
+module.exports = {add: add, list: list, find:find, num_tweets:num_tweets};
 
 var randArrayEl = function(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -32,7 +37,7 @@ var getFakeTweet = function() {
 };
 
 for(var i=0; i<10; i++) {
-  module.exports.add( getFakeName(), getFakeTweet() );
+  module.exports.add( getFakeName(), getFakeTweet(), i );
 }
 
 module.exports.add('Vincent Daranyi', 'Hooraay #fun');

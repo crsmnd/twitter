@@ -13,21 +13,24 @@
     </div>
     <div class="col-md-9">
       {% if showForm %}
-        <form action="/submit" method="POST">
-          <label for="name_field">Name:</label>
-          <input name="name" type="text" id="name_field" value="{{ user_page }}"/>
+        <div class="row">
+          <form action="/submit" method="POST">
+            <label for="name_field">Name:</label>
+            <input name="name" type="text" id="name_field" value="{{ user_page }}"/>
 
-          <label for="text_field">Text:</label>
-          <input name="text" type="text" id="text_field" style="width: 350px;" />
+            <label for="text_field">Text:</label>
+            <input name="text" type="text" id="text_field" style="width: 350px;" />
 
-          <input type="submit" value="Submit" />
-        </form>
+            <input type="submit" value="Submit" />
+          </form>
+          <br>
+        </div>
       {% endif %}
 
       <!-- display tweets here -->
       {% for tweet in tweets %}
       
-      <div class="row">
+      <div class="row" id="div_tweet_{{tweet.id}}">
         <div class="col-md-1">    
           <img alt="Vincent" class="avatar left" data-user="8965617" height="48" src="https://avatars0.githubusercontent.com/u/8965617?v=3&amp;u=1eec6fb0bda12a27b9e0a99635835bb37f831724&amp;s=140" width="48">
         </div>

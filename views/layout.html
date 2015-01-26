@@ -91,6 +91,16 @@
       console.log(new_tweet);
       alert('Refreshing... check the console...');
       // add logic to load the new tweet
+
+      var dom_div = makeElem('div', 'div_tweet_' + new_tweet.id, 'row');
+      var img_div = makeElem('div', '', 'col-md-1');
+      dom_div.appendChild(img_div);
+
+      function makeElem (elem_name, id, class_name) {
+        var div = document.createElement(elem_name);
+        if (id != '') div.id = id;
+        if (class_name != '') div.class = class_name;
+      }
     }); 
   </script>
 </html>
