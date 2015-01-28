@@ -9,6 +9,16 @@ module.exports = function(app, io) {
   // router.use(bodyParser.json());
 
   app.get('/', function (req, res) {
+    console.log('hi');
+    var User = require('../models/').User;
+    User.find(1).complete(function(err, user) {
+        console.log('user obj:', user);
+        user.getTweets().complete(function(err, tweets) {
+            console.log('tweet console log', tweets[0].tweet);
+      })
+    });
+
+
     var tweets = tweetBank.list();
     res.render( 'index', { title: 'Twitter.js', tweets: tweets, showForm: true } );
   });
