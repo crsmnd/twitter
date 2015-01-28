@@ -88,18 +88,54 @@
 
     // when 'new_tweet' events are fired, take our fileobj object and do something with it
     socket.on('new_tweet', function (new_tweet) { 
-      console.log(new_tweet);
+      // console.log(new_tweet);
       alert('Refreshing... check the console...');
       // add logic to load the new tweet
-
-      var dom_div = makeElem('div', 'div_tweet_' + new_tweet.id, 'row');
+      debugger;
+      var dom_div = makeElem('div', '', 'row');
       var img_div = makeElem('div', '', 'col-md-1');
-      dom_div.appendChild(img_div);
+      var tweet_div = makeElem('div', '', 'col-md-7');
 
+      var img = makeElem('img','','avatar left');
+      console.log(img);
+      img.alt = new_tweet.name;
+      img.height = '48';
+      img.width = '48';
+      img.src = 'http://lorempixel.com/48/48/people/' + new_tweet.id;
+
+      var a1 = document.createElement('a');
+      a1.href = '/users/' + new_tweet.id;
+
+      var strong = document.createElement('strong');
+      var text1 = document.createTextNode(new_tweet.name);
+      strong.appendChild(text1);
+      a1.appendChild(strong);
+
+      var p = document.createElement('p');
+      var text2 = document.createTextNode(new_tweet.text);
+      var br = document.createElement('br');
+      var a2 = document.createElement('a');
+      a2.href = '.';
+      p.appendChild(text2);
+      p.appendChild(br);
+      p.appendChild(a2);
+
+      dom_div.appendChild(img_div);
+      img_div.appendChild(img);
+      dom_div.appendChild(tweet_div);
+      tweet_div.appendChild(a1);
+      tweet_div.appendChild(p);
+
+      insertAfter(dom_div, document.getElementById('form_div'));
+      alert('inserted');
       function makeElem (elem_name, id, class_name) {
         var div = document.createElement(elem_name);
         if (id != '') div.id = id;
         if (class_name != '') div.class = class_name;
+      }
+
+      function insertAfter(newNode, referenceNode) {
+        referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
       }
     }); 
   </script>

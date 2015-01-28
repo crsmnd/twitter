@@ -13,7 +13,7 @@
     </div>
     <div class="col-md-9">
       {% if showForm %}
-        <div class="row">
+        <div class="row" id="form_div">
           <form action="/submit" method="POST">
             <label for="name_field">Name:</label>
             <input name="name" type="text" id="name_field" value="{{ user_page }}"/>
@@ -32,11 +32,11 @@
       
       <div class="row" id="div_tweet_{{tweet.id}}">
         <div class="col-md-1">    
-          <img alt="Vincent" class="avatar left" data-user="8965617" height="48" src="https://avatars0.githubusercontent.com/u/8965617?v=3&amp;u=1eec6fb0bda12a27b9e0a99635835bb37f831724&amp;s=140" width="48">
+          <img alt="{{tweet.User.name}}" class="avatar left" data-user="8965617" height="48" src="http://lorempixel.com/48/48/people/{{tweet.User.id % 11}}" width="48">
         </div>
         <div class="col-md-7">
-          <a href = "/users/{{tweet.name}}"><strong>{{tweet.name}}</strong></a>
-          <p>{{tweet.text}}<br>
+          <a href = "/users/{{tweet.User.name}}"><strong>{{tweet.User.name}}</strong></a>
+          <p>{{tweet.tweet}}<br>
           <a href=".">Retweet</a></p>
         </div>
       </div>
